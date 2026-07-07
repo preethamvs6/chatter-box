@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Replace 'your-dockerhub-username' with your actual Docker Hub or registry username
-        DOCKER_REGISTRY_USER = 'your-dockerhub-username'
+        DOCKER_REGISTRY_USER = 'preethamvs6'
         DOCKER_IMAGE = "${DOCKER_REGISTRY_USER}/chatterbox:${BUILD_NUMBER}"
     }
 
