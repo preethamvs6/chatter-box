@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatterbox
+  labels:
+    app: chatterbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chatterbox
+  template:
+    metadata:
+      labels:
+        app: chatterbox
+    spec:
+      containers:
+      - name: chatterbox
+        image: chatterbox:latest # Replace with your registry image (e.g. dockerhub-username/chatterbox:latest)
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatterbox-service
+spec:
+  type: LoadBalancer # Automatically provisions a public IP (or NodePort in local development)
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+  selector:
+    app: chatterbox
