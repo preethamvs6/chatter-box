@@ -1,0 +1,7 @@
+.git
+.gitignore
+__pycache__/
+*.db
+Jenkinsfile
+k8s-deployment.yaml
+README.md
